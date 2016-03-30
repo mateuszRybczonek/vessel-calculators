@@ -1,0 +1,15 @@
+@media print {
+    .no-print {
+        display: none !important;
+        height: 0;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+        height: 0;
+    }
+
+    .canvas {
+        margin-left: 10%;
+    }
+}

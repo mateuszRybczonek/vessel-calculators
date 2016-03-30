@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TAT's Verification</title>
+    <meta charset="utf-8"/>
+    <link href="styles/TAT.css" type="text/css" rel="stylesheet"/>
+    <link href="styles/noPrint.css" media="print" rel="stylesheet" type="text/css"/>
+    <link href="../styles/commonSubpages.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<nav id="navigation" class="no-print">
+    <div class="nav-tab">
+        <a class="link" id="link-0" href="../index.html">Main menu</a>
+        <a class="link" id="link-1" href="../02.RigMoveCalculator/rigMoveCalculator.html">Rig move calculator</a>
+        <a class="link" id="link-2" href="../05.LBLArrayPlanning/LBLArrayPlanning.html">LBL array planning</a>
+        <a class="link" id="link-3" href="../04.TATVerification/TATVerification.html">TAT Verification</a>
+        <a class="link" id="link-4" href="MAT002-TAT-Config.csv">Download DEMO *.csv</a>
+        <a class="link" id="link-5" href="TAT%20Verification.zip">C# / desktop version</a>
+        <a class="link" id="link-6" href="readme.docx">Download README</a>
+
+    </div>
+</nav>
+<header>
+    <table>
+        <tr>
+            <td id="TAT"><img id="TAT-img" src="../images/LBL-1-noLabel.png"/></td>
+            <td id="mainTitle"><h1>TAT's Verification</h1></td>
+            <td class="table no-print">
+                <h1 id="newBeaconLabel">New beacon:</h1>
+                <label class="newBeaconTitle" for="nameBeacon">Id:</label>
+                <input class="newBeaconInput" id="nameBeacon" type="text" name="nameBeacon"/><br/>
+                <label class="newBeaconTitle" for="newNorthing">Northing [m]:</label>
+                <input class="newBeaconInput" id="newNorthing" type="text" size="11" name="newNorthing"/><br/>
+                <label class="newBeaconTitle" for="newEasting">Easting [m]:</label>
+                <input class="newBeaconInput" id="newEasting" type="text" size="10" name="newEasting"/><br/>
+                <label class="newBeaconTitle" for="newDepth">Depth [m]:</label>
+                <input class="newBeaconInput" id="newDepth" type="text" size="11" name="newDepth"/><br/>
+                <label class="newBeaconTitle" for="newTAT">TAT [ms]:</label>
+                <input class="newBeaconInput" id="newTAT" type="text" size="11" name="newTAT"/>
+                <input class="bNewBeacon" id="bAddNewRow" type="button" name="bAddNewRow" value="Add new beacon"/>
+                <input class="bNewBeacon" id="bInsertWPT" type="button" name="bInsertWPT"
+                       value="Insert new beacon after selected beacon"/>
+                <input class="bNewBeacon" id="bReadBeacon" type="button" name="bReadBeacon"
+                       value="Read selected beacon"/>
+                <input class="bNewBeacon" id="bUpdateRow" type="button" name="bUpdateRow"
+                       value="Update selected beacon"/>
+
+                <input class="bGetUpdate" id="bGetWH" type="button" name="bGetWH" value="Read WH data"/>
+                <input class="bGetUpdate" id="bGetSHZ" type="button" name="bGetSHZ" value="Read SHZ data"/>
+                <input class="bGetUpdate" id="bUpdateWH" type="button" name="bUpdateWH" value="Update WH data"/>
+                <input class="bGetUpdate" id="bUpdateSHZ" type="button" name="bUpdateSHZ" value="Update SHZ data"/>
+            </td>
+        </tr>
+    </table>
+    <div id="fieldName">
+        <label for="iFieldName">Field:</label>
+        <input id="iFieldName" type="text" size="20" name="fieldName"/>
+        <label id='dateLabel' for="iWellName">Well:</label>
+        <input id="iWellName" type="text" size="20" name="wellName"/>
+        <label id='dateLabel' for="iDate">Date:</label>
+        <input id="iDate" type="text" size="20" name="date"/>
+    </div>
+</header>
+<div id="calculate">
+    <table class="table" id="table-calculationData">
+        <tr>
+            <td>
+                <label class="calculationLabel" for="speedOfSound">Sound velocity through the water column
+                    [m/s]:</label>
+                <input class="calculationInput" id="speedOfSound" type="text" size="7" name="speedOfSound"/><br/>
+                <label class="calculationLabel" for="draught">Draught [m]:</label>
+                <input class="calculationInput" id="draught" type="text" size="7" name="draught"/><br/>
+                <label class="calculationLabel" for="transducerDepth">Transducer depth below the keel [m]:</label>
+                <input class="calculationInput" id="transducerDepth" type="text" size="7" name="transducerDepth"/><br/>
+            </td>
+        </tr>
+    </table>
+    <table id="table-WH-Data">
+        <thead class="tableHead">
+        <tr>
+            <th class="WHcol" scope="col">Name</th>
+            <th class="WHcol" scope="col">Northing [m]</th>
+            <th class="WHcol" scope="col">Easting [m]</th>
+            <th class="WHcol" scope="col">Depth [m]</th>
+        </tr>
+        </thead>
+        <tbody id="tableWHBody">
+        <tr class="WHRow" id="WHPosition">
+            <td>WH</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="WHRow" id="SHZPosition">
+            <td>SHZ</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    <input class="no-print" id="bCalculate" type="button" name="bCalculate" value="Calculate"/><br/>
+    <input class="no-print" id="bRemoveRow" type="button" name="bRemoveRow" value="Remove selected row"/>
+    <input class="no-print" id="bClearTable" type="button" name="bClearTable" value="Clear table"/>
+</div>
+<table>
+    <tr>
+        <td class="tableBeacons">
+            <table>
+                <thead class="tableHead">
+                <th id="id-col" scope="col">Id</th>
+                <th class="dataCol" scope="col">Northing [m]</th>
+                <th class="dataCol" scope="col">Easting [m]</th>
+                <th class="dataCol" scope="col">Depth [m]</th>
+                <th class="dataCol" scope="col">TAT [ms]</th>
+                <th class="timeCol" scope="col">Slant range to WH [m]</th>
+                <th class="timeCol" scope="col">Horizontal dist. to WH [m]</th>
+                <th class="timeCol" scope="col">Slant range to SHZ [m]</th>
+                <th class="timeCol" scope="col">Horizontal dist. to SHZ [m]</th>
+                <th id="selected" scope="col">Sel.</th>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </td>
+        <td class="no-print" id="importExportColumn">
+            <div id="exportCSV" class="importExportCSV">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="bExportCSV" class="bImportExportCSV" type=button name="doCSV"
+                                   value="Export to *.csv"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="importExportCSV">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="fileInput" type="file" name="csvFile"/>
+                            <input class="bImportExportCSV" id="bLoadFromCSV" type=button name="loadFromCSV"
+                                   value="Import from *.csv"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+<table id="canvasGroup">
+    <tr>
+        <td>
+            <canvas class="canvas" id="canvas-1" width="400px" height="400px"></canvas>
+        </td>
+        <td>
+            <canvas class="canvas" id="canvas-2" width="400px" height="400px"></canvas>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <canvas class="canvas" id="canvas-3" width="800px" height="400px"></canvas>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td class="tableBeacons tableVerify"/>
+        SHZ position:
+        <table id="tableVerifySHZ">
+            <thead class="tableHead" id="TATTableHead">
+            </thead>
+            <tbody id="TATTableBodySHZ">
+            </tbody>
+        </table>
+        </td>
+    </tr>
+</table>
+<table>
+    <td class="tableBeacons tableVerify"/>
+    WH position:
+    <table id="tableVerifyWH">
+        <thead class="tableHead" id="TATTableHeadWH">
+        </thead>
+        <tbody id="TATTableBodyWH">
+        </tbody>
+    </table>
+    </td>
+</table>
+
+<script src="../jsCommonSubpages/jquery-2.2.0.js"></script>
+<script src="js/calculate.js"></script>
+<script src="js/addRow.js"></script>
+<script src="js/doCSV.js"></script>
+<script src="js/loadFromCSV.js"></script>
+<script src="js/removeSelectedRow.js"></script>
+<script src="js/addNewRowInside.js"></script>
+<script src="js/drawing.js"></script>
+<script src="js/updateRow.js"></script>
+<script src="js/colorCodeTable.js"></script>
+<script src="js/resize.js"></script>
+<script src="../jsCommonSubpages/scrollNavHide.js"></script>
+<script src="js/updateWH.js"></script>
+<script src="js/readBeacon.js"></script>
+<script src="js/verifyTAT.js"></script>
+<script src="js/clearTable.js"></script>
+</body>
+</html>

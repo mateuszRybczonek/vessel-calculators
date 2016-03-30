@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rig Move Calculator</title>
+    <meta charset="utf-8"/>
+    <link href="styles/rigMoveCalculatorStyles.css" type="text/css" rel="stylesheet"/>
+    <link href="../styles/commonSubpages.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<nav id="navigation">
+    <div class="nav-tab">
+        <a class="link" id="link-0" href="../index.html">Main menu</a>
+        <a class="link" id="link-1" href="../02.RigMoveCalculator/rigMoveCalculator.html">Rig move calculator</a>
+        <a class="link" id="link-2" href="../05.LBLArrayPlanning/LBLArrayPlanning.html">LBL array planning</a>
+        <a class="link" id="link-3" href="../04.TATVerification/TATVerification.html">TAT Verification</a>
+        <a class="link" id="link-4" href="MAT001-RigMove.csv">Download DEMO *.csv</a>
+        <a class="link" id="link-5" href="Rig%20Move%20Calculator.zip">C# / Desktop version</a>
+    </div>
+</nav>
+<header>
+    <table>
+        <tr>
+            <td id="DS4"><img src="images/DS-4.jpg"/></td>
+            <td id="mainTitle"><h1>Rig Move Calculator</h1></td>
+            <td id="newWPT">
+                <h1 id="newWPTLabel">New waypoint:</h1>
+                <label class="newWPTTitle" for="nameWPT">Name:</label>
+                <input class="newWPTInput" id="nameWPT" type="text" name="nameWPT"/><br/>
+                <label class="newWPTTitle" for="newEasting">Easting [m]:</label>
+                <input class="newWPTInput" id="newEasting" type="text" size="10" name="newEasting"/><br/>
+                <label class="newWPTTitle" for="newNorthing">Northing [m]:</label>
+                <input class="newWPTInput" id="newNorthing" type="text" size="11" name="newNorthing"/>
+                <input id="bAddNewRow" type="button" name="bAddNewRow" value="Add new WPT"/>
+                <input id="bInsertWPT" type="button" name="bInsertWPT" value="Insert new WPT after selected row"/>
+                <input id="bReadRow" type="button" name="bReadRow" value="Read selected row"/>
+                <input id="bUpdateRow" type="button" name="bUpdateRow" value="Update selected row"/>
+            </td>
+        </tr>
+    </table>
+    <div id="trackName">
+        <label for="iTrackName">Track name:</label>
+        <input id="iTrackName" type="text" size="40" name="trackName"/>
+    </div>
+</header>
+<div id="calculate">
+    <label for="projectedSpeed">Projected speed [kn]:</label>
+    <input id="projectedSpeed" type="text" size="4" name="projectedSpeed"/>
+    <input id="bCalculate" type="button" name="bCalculate" value="Calculate"/>
+    <input id="bRemoveRow" type="button" name="bRemoveRow" value="Remove selected row"/>
+    <input id="bClearTable" type="button" name="bClearTable" value="Clear table"/>
+</div>
+<table>
+    <tr>
+        <td id="tableWPT">
+            <table>
+                <thead class="tableHead">
+                <tr>
+                    <th scope="col">WPT no.</th>
+                    <th scope="col">WPT name</th>
+                    <th scope="col">Coordinate Easting [m]</th>
+                    <th scope="col">Coordinate Northing [m]</th>
+                    <th scope="col">Distance leg [m]</th>
+                    <th scope="col">Distance done [m]</th>
+                    <th scope="col">Distance remaining [m]</th>
+                    <th id="timeCol" scope="col">Time leg</th>
+                    <th id="timeCol" scope="col">Time remaining</th>
+                    <th id="selected" scope="col">Selected</th>
+                </tr>
+                </thead>
+                <tbody id="table">
+                </tbody>
+            </table>
+        </td>
+        <td id="importExportColumn">
+            <div id="exportCSV" class="importExportCSV">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="bExportCSV" class="bImportExportCSV" type=button name="doCSV"
+                                   value="Export to *.csv"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="importExportCSV">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="fileInput" type="file" name="csvFile"/>
+                            <input class="bImportExportCSV" id="bLoadFromCSV" type=button name="loadFromCSV"
+                                   value="Import from *.csv"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+<table id="canvasGroup">
+    <tr>
+        <td>
+            <canvas id="canvas" width="600px" height="600px"></canvas>
+            <label id="eastingFrameCanvas"></label>
+            <label id="northingFrameCanvas"></label>
+        </td>
+        <td id="canvasEnlarge">
+            <canvas id="canvasEnlarge1" width="400px" height="285px"></canvas>
+            <canvas id="canvasEnlarge2" width="400px" height="285px"></canvas>
+        </td>
+    </tr>
+</table>
+
+<script src="../jsCommonSubpages/jquery-2.2.0.js"></script>
+<script src="js/calculate.js"></script>
+<script src="js/addRow.js"></script>
+<script src="js/doCSV.js"></script>
+<script src="js/loadFromCSV.js"></script>
+<script src="js/clearTable.js"></script>
+<script src="js/removeSelectedRow.js"></script>
+<script src="js/addNewRowInside.js"></script>
+<script src="js/drawing.js"></script>
+<script src="js/updateRow.js"></script>
+<script src="js/colorCodeTable.js"></script>
+<script src="js/getCoordinates.js"></script>
+<script src="js/resize.js"></script>
+<script src="js/readWPT.js"></script>
+<script src="../jsCommonSubpages/scrollNavHide.js"></script>
+</body>
+</html>

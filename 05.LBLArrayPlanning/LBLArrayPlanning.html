@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LBL Array Planning</title>
+    <meta charset="utf-8"/>
+    <link href="styles/LBLArray.css" type="text/css" rel="stylesheet"/>
+    <link href="styles/noPrint.css" media="print" rel="stylesheet" type="text/css"/>
+    <link href="../styles/commonSubpages.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<nav id="navigation" class="no-print">
+    <div class="nav-tab">
+        <a class="link" id="link-0" href="../index.html">Main menu</a>
+        <a class="link" id="link-1" href="../02.RigMoveCalculator/rigMoveCalculator.html">Rig move calculator</a>
+        <a class="link" id="link-2" href="../05.LBLArrayPlanning/LBLArrayPlanning.html">LBL array planning</a>
+        <a class="link" id="link-3" href="../04.TATVerification/TATVerification.html">TAT Verification</a>
+        <a class="link" id="link-4" href="MAT003-LBL-Config.csv">Download DEMO *.csv</a>
+    </div>
+</nav>
+<header>
+    <table>
+        <tr>
+            <td id="TAT"><img id="TAT-img" src="../images/LBL-1-noLabel.png"/></td>
+            <td id="mainTitle"><h1>LBL Array Planning</h1></td>
+            <td class="table no-print">
+                <h3>New beacon:</h3>
+                <input type="radio" name="selectArray" id="selectArray1" value="Array 1"/>
+                <label for="selectArray1">Array 1</label>
+                <input type="radio" name="selectArray" id="selectArray2" value="Array 2"/>
+                <label for="selectArray2">Array 2</label><br/><br/>
+                <label class="newBeaconTitle" for="nameBeacon">Id:</label>
+                <input class="newBeaconInput" id="nameBeacon" type="text" name="nameBeacon"/><br/>
+                <label class="newBeaconTitle" for="newSerialNumber">Serial number:</label>
+                <input class="newBeaconInput" id="newSerialNumber" type="text" name="newSerialNumber"/><br/>
+                <label class="newBeaconLabel" for="newFloatNo">Float no.:</label>
+                <input class="newBeaconInput" id="newFloatNo" type="text" size="10" name="newFloatNo"/><br/>
+                <input class="bNewBeacon" id="bAddNewRow" type="button" name="bAddNewRow" value="Add new beacon"/>
+                <input class="bNewBeacon" id="bInsertWPT" type="button" name="bInsertWPT"
+                       value="Insert new beacon after selected beacon"/>
+                <input class="bNewBeacon" id="bReadBeacon" type="button" name="bReadBeacon"
+                       value="Read selected beacon"/>
+                <input class="bNewBeacon" id="bUpdateRow" type="button" name="bUpdateRow"
+                       value="Update selected beacon"/>
+                <h3 id="WHData">WH Data:</h3>
+                <label class="newBeaconTitle" for="newNorthing">Northing [m]:</label>
+                <input class="newBeaconInput" id="newNorthing" type="text" size="11" name="newNorthing"/><br/>
+                <label class="newBeaconTitle" for="newEasting">Easting [m]:</label>
+                <input class="newBeaconInput" id="newEasting" type="text" size="10" name="newEasting"/><br/>
+                <input class="bGetUpdate" id="bGetWH" type="button" name="bGetWH" value="Read WH data"/>
+                <input class="bGetUpdate" id="bUpdateWH" type="button" name="bUpdateWH" value="Update WH data"/>
+            </td>
+        </tr>
+    </table>
+    <div id="fieldData">
+        <label for="iFieldName">Field:</label>
+        <input id="iFieldName" type="text" size="20" name="fieldName"/>
+        <label id='dateLabel' for="iWellName">Well:</label>
+        <input id="iWellName" type="text" size="20" name="wellName"/>
+        <label id='dateLabel' for="iDate">Date:</label>
+        <input id="iDate" type="text" size="20" name="date"/>
+        <label id='UTMZone' for='iUTMZone'>UTM Zone:</label>
+        <input id='iUTMZone' type="text" size="20" name="UTMZone"/>
+    </div>
+</header>
+<div id="calculate">
+    <table class="table table-calculationData">
+        <tr>
+            <td>
+                <label class="calculationLabel" for="heading">Start angle [°]:</label>
+                <input class="calculationInput" id="heading" type="text" size="7" name="heading"/><br/>
+                <label class="calculationLabel" for="depth">Water depth [m]:</label>
+                <input class="calculationInput" id="depth" type="text" size="7" name="depth"/><br/>
+                <label class="calculationLabel" for="draught">Transponder height [m]:</label>
+                <input class="calculationInput" id="draught" type="text" size="7" name="draught"/><br/>
+                <label class="calculationLabel" for="transducerDepth">Transducer depth [m]:</label>
+                <input class="calculationInput" id="transducerDepth" type="text" size="7" name="transducerDepth"/><br/>
+                <label class="calculationLabel" for="relativeDepth">Relative depth [m]:</label>
+                <input class="calculationInput" id="relativeDepth" type="text" size="7" name="relativeDepth"
+                       disabled="disabled"/><br/>
+                <label class="calculationLabel" for="angle">Vertical angle [°]:</label>
+                <input class="calculationInput" id="angle" type="text" size="7" name="angle" value="10"/><br/>
+                <label class="calculationLabel" for="distanceWHTransponder">Distance WH-Transponder [m]:</label>
+                <input class="calculationInput" id="distanceWHTransponder" type="text" size="7"
+                       name="distanceWHTransponder" disabled="disabled"/><br/>
+            </td>
+        </tr>
+    </table>
+    <table id="table-WH-Data">
+        <thead class="tableHead">
+        <tr>
+            <th class="WHcol" scope="col">Name</th>
+            <th class="WHcol" scope="col">Northing [m]</th>
+            <th class="WHcol" scope="col">Easting [m]</th>
+        </tr>
+        </thead>
+        <tbody id="tableWHBody">
+        <tr class="WHRow" id="WHPosition">
+            <td>WH</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    <input class="no-print" id="bCalculate" type="button" name="bCalculate" value="Calculate"/><br/>
+    <input class="no-print" id="bRemoveRow" type="button" name="bRemoveRow" value="Remove selected row"/>
+    <input class="no-print" id="bClearTable" type="button" name="bClearTable" value="Clear table"/>
+    <table class="table table-calculationData" id="beaconRadius">
+        <tr>
+            <td>
+                <h3>Beacon's radius:</h3>
+                <label class="calculationLabel" for="angleThreshold">Angle threshold [°]:</label>
+                <input class="calculationInput radiusInput" id="angleThreshold" type="text" size="7" value="1"
+                       name="angleThreshold"/><br/>
+                <label class="calculationLabel" for="beaconsRadius">Beacon's radius [m]:</label>
+                <input class="calculationInput radiusInput" id="beaconsRadius" type="text" size="7" name="beaconsRadius"
+                       disabled="disabled"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<table>
+    <tr>
+        <td class="tableBeacons">
+            <table>
+                <tr>
+                    <h2 class="arrayHeader">Array 1:</h2>
+                    <input type="radio" id="PTransducer" class="arrayHeader" name="transducerA1" value="transducer"
+                           checked="checked">
+                    <label for="PTransducer">PORT Transducer</label>
+                    <input type="radio" id="STransducer" class="arrayHeader" name="transducerA1" value="transducer">
+                    <label for="STransducer">STBD Transducer</label>
+                    <thead class="tableHead">
+                    <th id="no" scope="col">No</th>
+                    <th id="id-col" scope="col">Id</th>
+                    <th class="dataCol" scope="col">Serial no.</th>
+                    <th class="dataCol" scope="col">Northing [m]</th>
+                    <th class="dataCol" scope="col">Easting [m]</th>
+                    <th class="dataCol" scope="col">Range from WH [m]</th>
+                    <th class="dataCol" scope="col">Bearing from WH [°]</th>
+                    <th class="dataCol" scope="col">Float no.</th>
+                    <th id="selected" scope="col">Sel.</th>
+                    </thead>
+                    <tbody id="array1TableBody">
+                    </tbody>
+                </tr>
+            </table>
+        </td>
+        <td rowspan="2" class="no-print" id="importExportColumn">
+            <div id="exportCSV" class="importExportCSV">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="bExportCSV" class="bImportExportCSV" type=button name="doCSV"
+                                   value="Export to *.csv"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="importExportCSV">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="fileInput" type="file" name="csvFile"/>
+                            <input class="bImportExportCSV" id="bLoadFromCSV" type=button name="loadFromCSV"
+                                   value="Import from *.csv"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    <tr>
+        <td class="tableBeacons">
+            <table>
+                <h2 class="arrayHeader">Array 2:</h2>
+                <input type="radio" id="PTransducer" class="arrayHeader" name="transducerA2" value="transducer">
+                <label for="PTransducer">PORT Transducer</label>
+                <input type="radio" id="STransducer" class="arrayHeader" name="transducerA2" value="transducer"
+                       checked="checked"></input>
+                <label for="STransducer">STBD Transducer</label>
+                <thead class="tableHead">
+                <th id="no" scope="col">No</th>
+                <th id="id-col" scope="col">Id</th>
+                <th class="dataCol" scope="col">Serial no.</th>
+                <th class="dataCol" scope="col">Northing [m]</th>
+                <th class="dataCol" scope="col">Easting [m]</th>
+                <th class="dataCol" scope="col">Range from WH [m]</th>
+                <th class="dataCol" scope="col">Bearing from WH [°]</th>
+                <th class="dataCol" scope="col">Float no.</th>
+                <th id="selected" scope="col">Sel.</th>
+                </thead>
+                <tbody id="array2TableBody">
+                </tbody>
+            </table>
+        </td>
+</table>
+<table id="canvasGroup">
+    <tr>
+        <td>
+            <canvas class="canvas" id="canvas-1" width="400px" height="400px"></canvas>
+        </td>
+        <td id="redrawTD">
+            <label class="scaleLabel" for="scale">Drawing scale [m]:</label><br/>
+            <input id="scale" type="text" size="7" name="scale" value="500"/><br/>
+            <input id="bRedraw" class="no-print" type=button name="bRedraw" value="Re-draw"/>
+        </td>
+        <td>
+            <canvas class="canvas" id="canvas-2" width="400px" height="400px"></canvas>
+        </td>
+    </tr>
+</table>
+<script src="../jsCommonSubpages/jquery-2.2.0.js"></script>
+<script src="js/calculate.js"></script>
+<script src="js/addRow.js"></script>
+<script src="js/doCSV.js"></script>
+<script src="js/loadFromCSV.js"></script>
+<script src="js/removeSelectedRow.js"></script>
+<script src="js/addNewRowInside.js"></script>
+<script src="js/drawing.js"></script>
+<script src="js/updateRow.js"></script>
+<script src="js/colorCodeTable.js"></script>
+<script src="../jsCommonSubpages/scrollNavHide.js"></script>
+<script src="js/updateWH.js"></script>
+<script src="js/readBeacon.js"></script>
+<script src="js/clearTable.js"></script>
+</body>
+</html>

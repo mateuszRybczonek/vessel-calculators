@@ -1,0 +1,163 @@
+
+#TAT {
+    width: 20%;
+    text-align: center;
+}
+
+#TAT-img {
+    width: 100%;
+    text-align: left;
+}
+
+.table {
+    border: 2px solid gray;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+    background-color: #C3BFFF;
+    min-width: 245px;
+    max-height: 100px;
+    font-size: 14px;
+    margin-top: 20px;
+    text-shadow: -1px -1px 1px white;
+}
+
+#table-calculationData {
+    width: 480px;
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.newBeaconInput {
+    width: 100px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.newBeaconTitle {
+    width: 100px;
+    text-align: right;
+}
+
+#newBeaconLabel {
+    margin-top: -3px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#fieldName {
+    margin-bottom: 20px;
+}
+
+#dateLabel {
+    margin-left: 20px;
+}
+
+#bInsertWPT {
+    margin-top: 10px;
+}
+
+.bNewBeacon {
+    width: 100%;
+    height: 30px;
+    font-size: 13px;
+}
+
+#bGetWH {
+    margin-top: 30px;
+}
+
+.bGetUpdate {
+    width: 120px;
+}
+
+.calculationInput {
+    width: 100px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.calculationLabel {
+    width: 100px;
+    text-align: right;
+}
+
+.tableBeacons {
+    border: 2px solid gray;
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 70%;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+    min-width: 740px;
+    min-height: 300px;
+    vertical-align: top;
+}
+
+.WHRow {
+    height: 25px;
+    vertical-align: middle;
+}
+
+#id-col {
+    width: 50px;
+}
+
+.timeCol {
+    min-width: 80px;
+}
+
+.dataCol {
+    min-width: 60px;
+}
+
+#table-WH-Data {
+    width: 450px;
+    border: 2px solid gray;
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.WHcol {
+    max-width: 50px;
+}
+
+.canvas {
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-top: 20px;
+    background-color: #F8F7FF;
+}
+
+#canvas-3 {
+    margin-left: 15%;
+}
+
+.verifyCol {
+    width: 50px;
+}
+
+.tableVerify {
+    text-align: left;
+    width: 960px;
+    font-size: 14px;
+}
+
+.verifyCell {
+    font-size: 11px;
+    text-align: center;
+}
+
+.notOK {
+    background-color: #FF585D;
+    font-size: 11px;
+    text-align: center;
+    color: #FFFF53;
+}
